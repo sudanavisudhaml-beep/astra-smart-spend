@@ -23,13 +23,25 @@
     ::-webkit-scrollbar-track { background: #f8fafc; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    /* Hide scrollbar for nav area but allow scroll */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-  <div id="root"></div>
+  <!-- Root Div with Loading Indicator -->
+  <div id="root">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; gap: 1rem; color: #475569;">
+      <svg style="animation: spin 1s linear infinite; width: 40px; height: 40px; color: #2563eb;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle opacity="0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path opacity="0.75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span style="font-weight: 600; font-family: sans-serif;">Memuat SmartSpend Blueprint...</span>
+      <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+    </div>
+  </div>
 
   <!-- React Code with ESM imports -->
   <script type="text/babel" data-type="module">
@@ -284,7 +296,7 @@
               const Icon = lens.icon;
               return (
                 <Card key={idx} className="p-6 border border-slate-200 hover:border-blue-400 transition-all hover:shadow-lg group bg-white relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-3 text-slate-100 font-black text-4xl group-hover:text-blue-50 transition-colors -z-0">
+                  <div className="absolute top-0 right-0 p-3 text-slate-100 font-black text-4xl group-hover:text-blue-50 transition-colors z-0">
                     {lens.id}
                   </div>
                   <div className="relative z-10">
