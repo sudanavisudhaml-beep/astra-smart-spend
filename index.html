@@ -498,28 +498,17 @@
       return (
         <div className="min-h-screen flex flex-col md:flex-row">
           <aside className="w-full md:w-72 bg-slate-900 text-slate-300 md:min-h-screen flex flex-col shadow-[10px_0_30px_-15px_rgba(0,0,0,0.5)] z-20 shrink-0 relative">
-            <div className="p-6 md:pt-10 border-b border-slate-800 bg-slate-950 flex flex-col items-center justify-center md:items-start relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-teal-400 to-amber-500"></div>
-              <div className="flex items-center mb-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mr-3 shadow-lg border border-blue-500/30">
-                  <Building size={20} className="text-white" />
-                </div>
-                <div>
-                  <h1 className="text-white font-extrabold text-xl tracking-tight leading-none">ASTRA</h1>
-                  <span className="text-blue-400 font-bold text-xs uppercase tracking-widest leading-none">Group</span>
-                </div>
-              </div>
-            </div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-teal-400 to-amber-500 z-30"></div>
             
-            <div className="flex-1 overflow-x-auto md:overflow-y-auto no-scrollbar py-6">
-              <div className="px-6 mb-4">
-                <h4 className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">Initiative</h4>
-                <div className="text-white font-bold text-sm bg-slate-800 py-2 px-3 rounded-md border border-slate-700 shadow-inner flex items-center">
-                  <Zap size={14} className="text-amber-400 mr-2" /> SmartSpend
+            <div className="flex-1 overflow-x-auto md:overflow-y-auto no-scrollbar pt-6 md:pt-10 pb-6">
+              <div className="px-6 mb-4 hidden md:block">
+                <h4 className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">Document Type</h4>
+                <div className="text-white font-bold text-xs bg-slate-800 py-2 px-3 rounded-md border border-slate-700 shadow-inner flex items-center">
+                  <Layers size={14} className="text-blue-400 mr-2" /> Strategic Blueprint
                 </div>
               </div>
 
-              <nav className="flex md:flex-col px-4 gap-2">
+              <nav className="flex md:flex-col px-4 gap-2 pb-2 md:pb-0">
                 {TAB_PAGES.map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeTabId === tab.id;
@@ -527,7 +516,7 @@
                     <button
                       key={tab.id}
                       onClick={() => setActiveTabId(tab.id)}
-                      className={`flex items-center px-4 py-3.5 rounded-xl transition-all whitespace-nowrap text-sm font-semibold w-full text-left relative overflow-hidden
+                      className={`flex items-center px-4 py-3.5 rounded-xl transition-all whitespace-nowrap text-sm font-semibold shrink-0 md:w-full text-left relative overflow-hidden
                         ${isActive 
                           ? 'bg-blue-600 text-white shadow-lg transform scale-[1.02]' 
                           : 'hover:bg-slate-800 text-slate-400 hover:text-slate-100'
@@ -558,17 +547,35 @@
             </div>
           </aside>
 
-          <main className="flex-1 flex flex-col relative min-h-screen pb-32 md:pb-24">
-            <div className="flex-1 p-6 md:p-12 lg:p-16 max-w-6xl mx-auto w-full pb-36 md:pb-32">
+          <main className="flex-1 flex flex-col relative min-h-screen bg-slate-50/50">
+            {/* Main Content Area */}
+            <div className="flex-1 p-6 md:p-12 lg:p-16 max-w-6xl mx-auto w-full pb-12">
               {renderContent()}
             </div>
 
-            <div className="fixed bottom-0 md:bottom-6 left-0 md:left-auto right-0 md:right-8 w-full md:w-[calc(100%-22rem)] md:max-w-4xl mx-auto z-30">
+            {/* Dark Footer aligned with ERSUS style */}
+            <footer className="bg-[#0B1121] pt-12 pb-32 md:pb-28 px-6 text-center mt-auto border-t border-slate-800">
+              <div className="max-w-3xl mx-auto flex flex-col items-center">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Zap size={22} className="text-blue-500" />
+                  <h2 className="text-white font-black text-xl tracking-tight">ASTRA <span className="text-amber-400 font-bold">Smart Spend</span></h2>
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-2xl">
+                  Strategic Optimization Blueprint. Menghentikan value leakage, merancang ulang model layanan operasional, dan mendorong efisiensi bisnis secara berkelanjutan.
+                </p>
+                <p className="text-slate-500 text-xs">
+                  &copy; {new Date().getFullYear()} Astra Smart Spend Initiative.
+                </p>
+              </div>
+            </footer>
+
+            {/* Floating Navigation Bar */}
+            <div className="fixed bottom-0 md:bottom-6 left-0 md:left-[288px] right-0 md:right-8 lg:max-w-4xl lg:mx-auto z-30">
               <div className="bg-white/90 backdrop-blur-md border-t md:border border-slate-200 md:rounded-2xl p-4 flex justify-between items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] md:shadow-2xl">
                 <button 
                   onClick={handlePrev}
                   disabled={activeIndex === 0}
-                  className={`flex items-center px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${activeIndex === 0 ? 'text-slate-300 cursor-not-allowed opacity-50' : 'text-slate-700 bg-slate-100 hover:bg-slate-200 hover:text-slate-900'}`}
+                  className={`flex items-center px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${activeIndex === 0 ? 'text-slate-300 cursor-not-allowed opacity-50' : 'text-slate-700 bg-slate-100 hover:bg-slate-200 hover:text-slate-900 active:scale-95'}`}
                 >
                   <ChevronLeft size={18} className="mr-1" /> Prev
                 </button>
@@ -579,7 +586,7 @@
                   </div>
                   <div className="flex text-slate-400 gap-1.5">
                     {TAB_PAGES.map((_, i) => (
-                      <span key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-blue-600' : 'w-2 bg-slate-200'}`} />
+                      <span key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]' : 'w-2 bg-slate-200'}`} />
                     ))}
                   </div>
                 </div>
@@ -587,7 +594,7 @@
                 <button 
                   onClick={handleNext}
                   disabled={activeIndex === TAB_PAGES.length - 1}
-                  className={`flex items-center px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md ${activeIndex === TAB_PAGES.length - 1 ? 'text-slate-300 bg-slate-50 cursor-not-allowed border border-slate-200 opacity-50' : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg'}`}
+                  className={`flex items-center px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md ${activeIndex === TAB_PAGES.length - 1 ? 'text-slate-300 bg-slate-50 cursor-not-allowed border border-slate-200 opacity-50' : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg active:scale-95'}`}
                 >
                   {activeIndex === TAB_PAGES.length - 2 ? 'Show Impact' : 'Next'} <ChevronRight size={18} className="ml-1" />
                 </button>
